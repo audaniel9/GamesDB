@@ -5,84 +5,44 @@ var express = require("express"),
 
 app.use(bodyParser.json());
 
-Genre = require("./models/genre");
-Book = require("./models/book");
+Game = require("./models/game");
 
-mongoose.connect("mongodb://localhost/bookstore");
+mongoose.connect("mongodb://localhost/gamesdb");
 var db = mongoose.connection;
 
 app.get("/", function(req, res) {
-  res.send("Use /api/books/");
+  res.send("Use /games/");
 });
 
-app.get("/api/genres", function(req, res) {
-  Genre.getGenres(function(err, genres) {
+app.get("/games", function(req, res) {
+  Game.getGame(function(err, game) {
     if(err) throw err;
-    res.json(genres);
+    res.json(game);
   });
 });
 
-app.post("/api/genres", function(req, res) {
-  var genre = req.body;
-  Genre.addGenre(genre, function(err, genre) {
+app.post("/games", function(req, res) {
+  var game = req.body;
+  Game.addGame(game, function(err, game) {
     if(err) throw err;
-    res.json(genre);
+    res.json(game);
   });
 });
 
-app.put("/api/genres/:_id", function(req, res) {
+app.put("/games/:_id", function(req, res) {
   var id = req.params._id;
-  var genre = req.body;
-  Genre.updateGenre(id, genre, {}, function(err, genre) {
+  var game = req.body;
+  Game.updateGame(id, game, {}, function(err, game) {
     if(err) throw err;
-    res.json(genre);
+    res.json(game);
   });
 });
 
-app.delete("/api/genres/:_id", function(req, res) {
+app.delete("/games/:_id", function(req, res) {
   var id = req.params._id;
-  Genre.removeGenre(id, function(err, genre) {
+  Game.removeGame(id, function(err, game) {
     if(err) throw err;
-    res.json(genre);
-  });
-});
-
-app.get("/api/books", function(req, res) {
-  Book.getBooks(function(err, books) {
-    if(err) throw err;
-    res.json(books);
-  });
-});
-
-app.get("/api/books/:_id", function(req, res) {
-  Book.getBookById(req.params._id, function(err, book) {
-    if(err) throw err;
-    res.json(book);
-  });
-});
-
-app.post("/api/books", function(req, res) {
-  var book = req.body;
-  Book.addBook(book, function(err, book) {
-    if(err) throw err;
-    res.json(book);
-  });
-});
-
-app.put("/api/books/:_id", function(req, res) {
-  var id = req.params._id;
-  var book = req.body;
-  Book.updateBook(id, book, {}, function(err, book) {
-    if(err) throw err;
-    res.json(book);
-  });
-});
-
-app.delete("/api/books/:_id", function(req, res) {
-  var id = req.params._id;
-  Book.removeBook(id, function(err, book) {
-    if(err) throw err;
-    res.json(book);
+    res.json(game);
   });
 });
 

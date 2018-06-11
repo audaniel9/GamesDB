@@ -24,4 +24,10 @@ gamesApp.controller("GamesController", ["$scope", "$http", "$location", "$routeP
       window.location.href="#!/games";
     });
   }
+
+  $scope.removeGame = function(id) {
+    $http.delete("/api/games/" + id).then(function(response) {
+      window.location.href="#!/games";
+    });
+  }
 }]);

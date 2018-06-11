@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var gameSchema = mongoose.Schema({
+const gameSchema = mongoose.Schema({
   name:{
     type: String,
     required: true
@@ -17,39 +17,43 @@ var gameSchema = mongoose.Schema({
   year:{
     type: Number
   },
+  platform:{
+    type: String
+  },
   tags:{
     type: String
   }
 });
 
-var game = module.exports = mongoose.model("Game", gameSchema);
+const game = module.exports = mongoose.model("Game", gameSchema);
 
-module.exports.getGame = function(callback, limit) {
+module.exports.getGame = (callback, limit) => {
   Game.find(callback).limit(limit);
 }
 
-module.exports.getGameById = function(id, callback) {
+module.exports.getGameById = (id, callback) => {
   Game.findById(id, callback);
 }
 
-module.exports.addGame = function(game, callback) {
+module.exports.addGame = (game, callback) => {
   Game.create(game, callback);
 }
 
-module.exports.updateGame = function(id, game, options, callback) {
+module.exports.updateGame = (id, game, options, callback) => {
   var query = {_id: id};
       update = {
-        name: Game.name,
-        series: Game.series,
-        developer: Game.developer,
-        publisher: Game.publisher,
-        year: Game.year,
-        tags: Game.tags
+        name: game.name,
+        series: game.series,
+        developer: game.developer,
+        publisher: game.publisher,
+        year: game.year,
+        platform: game.platform,
+        tags: game.tags
       }
       Game.findOneAndUpdate(query, update, options, callback);
 }
 
-module.exports.removeGame = function(id, callback) {
+module.exports.removeGame = (id, callback) => {
   var query = {_id: id};
   Game.remove(query, callback);
 }

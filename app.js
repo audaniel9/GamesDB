@@ -1,8 +1,9 @@
-var express = require("express"),
-    app = express();
-    bodyParser = require("body-parser");
-    mongoose = require("mongoose");
+const express = require("express"),
+      app = express();
+      bodyParser = require("body-parser");
+      mongoose = require("mongoose");
 
+app.use(express.static(__dirname + "/client"));
 app.use(bodyParser.json());
 
 Game = require("./models/game");
@@ -10,37 +11,42 @@ Game = require("./models/game");
 mongoose.connect("mongodb://localhost/gamesdb");
 var db = mongoose.connection;
 
-app.get("/", function(req, res) {
-  res.send("Use /games/");
+app.get("/api/", (req, res) => {
+  res.send("Use /api/games/");
 });
 
-app.get("/games", function(req, res) {
-  Game.getGame(function(err, game) {
+app.get("/api/games", (req, res) => {
+  Game.getGame((err, games) => {
+    if(err) throw err;
+    res.json(games);
+  });
+});
+
+app.get("/api/games/:_id", (req, res) => {
+  Game.getGameById(req.params._id, (err, game) => {
     if(err) throw err;
     res.json(game);
   });
 });
 
-app.post("/games", function(req, res) {
+app.post("/api/games", (req, res) => {
   var game = req.body;
-  Game.addGame(game, function(err, game) {
+  Game.addGame(game, (err, game) => {
     if(err) throw err;
     res.json(game);
   });
 });
 
-app.put("/games/:_id", function(req, res) {
-  var id = req.params._id;
+app.put("/api/games/:_id", (req, res) => {
   var game = req.body;
-  Game.updateGame(id, game, {}, function(err, game) {
+  Game.updateGame(req.params._id, game, {}, (err, game) => {
     if(err) throw err;
     res.json(game);
   });
 });
 
-app.delete("/games/:_id", function(req, res) {
-  var id = req.params._id;
-  Game.removeGame(id, function(err, game) {
+app.delete("/api/games/:_id", (req, res) => {
+  Game.removeGame(req.params._id, (err, game) => {
     if(err) throw err;
     res.json(game);
   });

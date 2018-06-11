@@ -1,0 +1,50 @@
+<h2>Edit Game</h2>
+<form class="form-control" ng-submit="updateGame()" ng-init="getGame()">
+  <div class="form-group col-auto">
+    <div class="row">
+      <div class="col">
+        <label>Game Name</label>
+        <input type="text" class="form-control" ng-model="game.name" placeholder="Enter name">
+      </div>
+      <div class="col">
+        <label>Game Series</label>
+        <input type="text" class="form-control" ng-model="game.series" aria-describedby="seriesHelp"placeholder="Enter series">
+        <small id="seriesHelp" class="form-text text-muted">The franchise the game is part of.</small>
+      </div>
+    </div>
+  </div>
+  <div class="form-group col-auto">
+    <label>Developer/Studio</label>
+    <input type="text" class="form-control" ng-model="game.developer" placeholder="Enter developer/studio">
+  </div>
+  <div class="form-group col-auto">
+    <label>Publisher</label>
+    <input type="text" class="form-control" ng-model="game.publisher" placeholder="Enter publisher">
+  </div>
+  <div class="form-group col-auto">
+    <label>Year of Release</label>
+    <input type="number" class="form-control" ng-model="game.year" placeholder="Enter year">
+  </div>
+  <div class="form-group col-auto">
+    <label>Game Platform</label>
+    <select class="custom-select" ng-model="game.platform" aria-describedby="platformHelp">
+      <option value="" disabled selected>Select a platform</option>
+      <option value="PC">PC</option>
+      <option value="PS3">PS3</option>
+      <option value="PS4">PS4</option>
+      <option value="Xbox360">Xbox 360</option>
+      <option value="XBone">Xbox One</option>
+      <option value="DS">Nintendo DS</option>
+      <option value="3DS">Nintendo 3DS</option>
+      <option value="Switch">Nintendo Switch</option>
+      <option value="Other">Other</option>
+    </select>
+    <small id="platformHelp" class="form-text text-muted">The platform you have your game on.</small>
+  </div>
+  <div class="form-group col-auto">
+    <label>Tags</label>
+    <input type="text" class="form-control" ng-model="game.tags" aria-describedby="tagsHelp" placeholder="Enter tags">
+    <small id="tagsHelp" class="form-text text-muted">Optional tags. Delimited with commas.</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -2,7 +2,7 @@
 A games database using MEAN stack with a REST API.
 
 <b>Homepage</b>
-![frontend](https://i.imgur.com/WR5uxnh.png)
+![frontend](https://i.imgur.com/FKvbZoe.png)
 
 <b>Add Game</b>
 ![frontendadd](https://i.imgur.com/V7aJn09.png)

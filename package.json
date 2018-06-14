@@ -1,7 +1,7 @@
 {
-  "name": "bookstore",
+  "name": "gamesdb",
   "version": "1.0.0",
-  "description": "bookstore application",
+  "description": "games database",
   "main": "app.js",
   "dependencies": {
     "body-parser": "*",

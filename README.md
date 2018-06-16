@@ -13,3 +13,5 @@ A games database using MEAN stack with a REST API.
 ## Documentation
 Remember to run `npm install` in the terminal after cloning.
 The client uses bower manager.
+
+Database is local only. Create a new database called gamesdb by typing `use gamesdb`. Now create a collection called games by using `db.createCollection("games");`.
